@@ -22,15 +22,13 @@
       --soft-line: #ece5d4;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       min-height: 100vh;
       background: radial-gradient(circle at top, #fdfaf3 0%, #f5f1e6 38%, #f0ebdd 100%);
-      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Cairo", system-ui, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,7 +38,7 @@
 
     .wrapper {
       width: 100%;
-      max-width: 1040px;
+      max-width: 1100px;
     }
 
     .card {
@@ -49,44 +47,26 @@
       border-radius: 24px;
       border: 1px solid var(--border);
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-      padding: 18px 16px 20px;
+      padding: 22px 20px;
     }
 
+    /* ✅ اللوقو يسار + النص يمين دائمًا */
     .card-inner {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
+      grid-template-columns: 0.9fr 1.6fr;
+      gap: 24px;
       align-items: center;
+      direction: ltr;   /* يمنع الانعكاس بسبب RTL */
     }
 
-    @media (min-width: 820px) {
-      .card {
-        padding: 26px 30px 26px;
-      }
-      .card-inner {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
-        gap: 24px;
-      }
-    }
-
-    /* العمود الأيسر - الشعار */
     .brand-side {
-      text-align: center;
-      border-bottom: 1px solid var(--soft-line);
-      padding-bottom: 14px;
-    }
-
-    @media (min-width: 820px) {
-      .brand-side {
-        border-bottom: none;
-        border-left: 1px solid var(--soft-line);
-        padding-bottom: 0;
-        padding-left: 22px;
-      }
+      text-align: left;
+      border-right: 1px solid var(--soft-line);
+      padding-right: 20px;
     }
 
     .logo img {
-      max-width: 180px;
+      max-width: 220px;
       height: auto;
       margin-bottom: 8px;
     }
@@ -107,15 +87,9 @@
       direction: ltr;
     }
 
-    /* العمود الأيمن - البيانات الشخصية */
     .profile-side {
-      text-align: center;
-    }
-
-    @media (min-width: 820px) {
-      .profile-side {
-        text-align: right;
-      }
+      text-align: right;
+      direction: rtl; /* يحافظ على العربية */
     }
 
     .name-ar {
@@ -148,15 +122,9 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 16px;
-    }
-
-    @media (min-width: 600px) {
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-      }
     }
 
     .item-label {
@@ -173,27 +141,14 @@
       font-family: "Poppins", sans-serif;
     }
 
-    .item-value a:hover {
-      text-decoration: underline;
-    }
+    .item-value a:hover { text-decoration: underline; }
 
     .buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-bottom: 8px;
-    }
-
-    @media (min-width: 600px) {
-      .buttons {
-        max-width: 360px;
-        margin-inline: auto;
-      }
-      @media (min-width: 820px) {
-        .buttons {
-          margin-inline: 0;
-        }
-      }
+      max-width: 320px;
     }
 
     .btn {
@@ -204,7 +159,6 @@
       font-weight: 600;
       text-align: center;
       border: 1px solid;
-      cursor: pointer;
       transition: 0.15s ease-out;
       display: inline-block;
     }
@@ -215,33 +169,23 @@
       border-color: var(--teal);
     }
 
-    .btn.call:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
-
     .btn.ghost {
       color: var(--gold);
       border-color: var(--gold);
       background: transparent;
     }
 
+    .btn.call:hover,
     .btn.ghost:hover {
-      background: rgba(201, 179, 126, 0.08);
       transform: translateY(-1px);
+      filter: brightness(1.03);
     }
 
     .footer {
       font-size: 11px;
       color: var(--muted);
-      text-align: center;
       margin-top: 6px;
-    }
-
-    @media (min-width: 820px) {
-      .footer {
-        text-align: left;
-      }
+      text-align: right;
     }
   </style>
 </head>
@@ -250,7 +194,17 @@
   <div class="wrapper">
     <div class="card">
       <div class="card-inner">
-        <!-- العمود الأيمن: البيانات -->
+
+        <!-- ✅ يسار: اللوقو -->
+        <div class="brand-side">
+          <div class="logo">
+            <img src="logo.png" alt="AQARATI Logo" />
+          </div>
+          <div class="company-ar">تحالف عقاراتي للاستثمار والتطوير العقاري</div>
+          <div class="company-en">AQARATI REAL ESTATE &amp; DEVELOPMENT CO.</div>
+        </div>
+
+        <!-- ✅ يمين: النص -->
         <div class="profile-side">
           <div class="name-ar">أ. حامد بن محمد الزين</div>
           <div class="name-en">Hamed bin Mohammed Al-Zain</div>
@@ -300,14 +254,6 @@
           </div>
         </div>
 
-        <!-- العمود الأيسر: الشعار -->
-        <div class="brand-side">
-          <div class="logo">
-            <img src="logo.png" alt="AQARATI Logo" />
-          </div>
-          <div class="company-ar">تحالف عقاراتي للاستثمار والتطوير العقاري</div>
-          <div class="company-en">AQARATI REAL ESTATE &amp; DEVELOPMENT CO.</div>
-        </div>
       </div>
     </div>
   </div>
