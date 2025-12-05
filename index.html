@@ -32,80 +32,45 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
       color: var(--text);
     }
 
     .wrapper {
       width: 100%;
-      max-width: 430px; /* عرض قريب من شاشة الجوال */
+      max-width: 420px;
     }
 
     .card {
       width: 100%;
-      min-height: 95vh;          /* الكرت طويل تقريباً بطول الشاشة */
+      min-height: 95vh;
       background: var(--card);
       border-radius: 28px;
       border: 1px solid var(--border);
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
-      padding: 24px 20px 30px;
+      padding: 18px 18px 26px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* يوزع المحتوى بالطول */
+      justify-content: space-between;
+      position: relative;
     }
 
-    /* اللوقو يسار – النص يمين */
-    .card-inner {
-      display: grid;
-      grid-template-columns: 0.9fr 1.6fr;
-      gap: 16px;
-      align-items: flex-start;
-      direction: ltr; /* يمنع انعكاس الأعمدة مع RTL */
+    /* ✅ لوقو صغير أعلى يسار */
+    .top-logo {
+      position: absolute;
+      top: 12px;
+      left: 12px;
     }
 
-    /* يسار: الشعار والهوية */
-    .brand-side {
-      border-right: 1px solid var(--soft-line);
-      padding-right: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .logo img {
-      max-width: 160px;
+    .top-logo img {
+      width: 58px;
       height: auto;
-      margin-bottom: 8px;
     }
 
-    .company-ar {
-      font-size: 13px;
-      color: var(--teal);
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .company-en {
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-family: "Poppins", sans-serif;
-      text-transform: uppercase;
-      direction: ltr;
-      margin-bottom: 4px;
-    }
-
-    .experts {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* يمين: بيانات حامد */
-    .profile-side {
-      text-align: right;
-      direction: rtl;
+    /* ✅ محتوى النص */
+    .content {
+      margin-top: 60px;
+      text-align: center;
     }
 
     .name-ar {
@@ -127,7 +92,7 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--teal);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .location {
@@ -139,15 +104,15 @@
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px 10px;
-      margin-bottom: 18px;
+      gap: 10px;
+      margin-bottom: 20px;
       font-size: 12px;
     }
 
     .item-label {
       font-size: 10px;
       color: var(--muted);
-      margin-bottom: 1px;
+      margin-bottom: 2px;
     }
 
     .item-value a {
@@ -158,26 +123,21 @@
       font-family: "Poppins", sans-serif;
     }
 
-    .item-value a:hover { text-decoration: underline; }
-
     .buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
     .btn {
-      padding: 9px 0;
+      padding: 10px 0;
       border-radius: 999px;
       text-decoration: none;
       font-size: 12px;
       font-weight: 600;
       text-align: center;
       border: 1px solid;
-      transition: 0.15s ease-out;
-      display: inline-block;
     }
 
     .btn.call {
@@ -192,29 +152,36 @@
       background: transparent;
     }
 
-    .btn.call:hover,
-    .btn.ghost:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-    }
-
     .footer {
       font-size: 10px;
       color: var(--muted);
-      text-align: left;
+      text-align: center;
+      margin-bottom: 12px;
       direction: ltr;
     }
 
-    /* اللوقو السفلي لملء الكرت من تحت */
+    /* ✅ اللوقو الكبير أسفل */
     .bottom-logo {
       text-align: center;
-      margin-top: 26px;
-      opacity: 0.22;
+      opacity: 0.9;
     }
 
     .bottom-logo img {
       max-width: 120px;
-      height: auto;
+    }
+
+    .company-ar {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .company-en {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-family: "Poppins", sans-serif;
     }
   </style>
 </head>
@@ -222,74 +189,69 @@
 <body>
   <div class="wrapper">
     <div class="card">
-      <div class="card-inner">
 
-        <!-- يسار: الشعار -->
-        <div class="brand-side">
-          <div class="logo">
-            <img src="logo.png" alt="AQARATI Logo" />
-          </div>
-          <div class="company-ar">تحالف عقاراتي للاستثمار والتطوير العقاري</div>
-          <div class="company-en">AQARATI REAL ESTATE &amp; DEVELOPMENT CO.</div>
-          <div class="experts">Real Estate Experts</div>
-        </div>
-
-        <!-- يمين: بيانات حامد -->
-        <div class="profile-side">
-          <div class="name-ar">أ. حامد بن محمد الزين</div>
-          <div class="name-en">Hamed bin Mohammed Al-Zain</div>
-          <div class="role">مدير العمليات | Operations Manager</div>
-
-          <div class="location">
-            الرياض – حي الربيع – طريق الملك عبدالعزيز
-          </div>
-
-          <div class="contact-grid">
-            <div>
-              <div class="item-label">الجوال</div>
-              <div class="item-value">
-                <a href="tel:+966510128214">+966 51 012 8214</a>
-              </div>
-            </div>
-
-            <div>
-              <div class="item-label">المكتب</div>
-              <div class="item-value">
-                <a href="tel:920029599">9200 29599</a>
-              </div>
-            </div>
-
-            <div>
-              <div class="item-label">البريد الإلكتروني</div>
-              <div class="item-value">
-                <a href="mailto:h.zain@aqarati.com.sa">h.zain@aqarati.com.sa</a>
-              </div>
-            </div>
-
-            <div>
-              <div class="item-label">الموقع الإلكتروني</div>
-              <div class="item-value">
-                <a href="https://www.aqarati.com.sa" target="_blank">www.aqarati.com.sa</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="buttons">
-            <a class="btn call" href="tel:+966510128214">اتصال</a>
-            <a class="btn ghost" href="https://wa.me/966510128214">واتساب</a>
-          </div>
-
-          <div class="footer">
-            Riyadh – Saudi Arabia
-          </div>
-        </div>
-
+      <!-- ✅ لوقو صغير أعلى يسار -->
+      <div class="top-logo">
+        <img src="logo.png" alt="AQARATI Logo Small" />
       </div>
 
-      <!-- لوقو سفلي -->
+      <!-- ✅ النص كامل تحت -->
+      <div class="content">
+        <div class="name-ar">أ. حامد بن محمد الزين</div>
+        <div class="name-en">Hamed bin Mohammed Al-Zain</div>
+        <div class="role">مدير العمليات | Operations Manager</div>
+
+        <div class="location">
+          الرياض – حي الربيع – طريق الملك عبدالعزيز
+        </div>
+
+        <div class="contact-grid">
+          <div>
+            <div class="item-label">الجوال</div>
+            <div class="item-value">
+              <a href="tel:+966510128214">+966 51 012 8214</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="item-label">المكتب</div>
+            <div class="item-value">
+              <a href="tel:920029599">9200 29599</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="item-label">البريد الإلكتروني</div>
+            <div class="item-value">
+              <a href="mailto:h.zain@aqarati.com.sa">h.zain@aqarati.com.sa</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="item-label">الموقع الإلكتروني</div>
+            <div class="item-value">
+              <a href="https://www.aqarati.com.sa" target="_blank">www.aqarati.com.sa</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <a class="btn call" href="tel:+966510128214">اتصال</a>
+          <a class="btn ghost" href="https://wa.me/966510128214">واتساب</a>
+        </div>
+
+        <div class="footer">
+          Riyadh – Saudi Arabia
+        </div>
+      </div>
+
+      <!-- ✅ لوقو كبير أسفل الكرت -->
       <div class="bottom-logo">
         <img src="logo.png" alt="AQARATI Logo Footer" />
+        <div class="company-ar">تحالف عقاراتي للاستثمار والتطوير العقاري</div>
+        <div class="company-en">AQARATI REAL ESTATE & DEVELOPMENT CO.</div>
       </div>
+
     </div>
   </div>
 </body>
